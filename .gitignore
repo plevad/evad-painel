@@ -1,0 +1,18 @@
+node_modules/
+*.exe
+*.dll
+*.pak
+*.bin
+*.dat
+*.html.bak
+desktop.ini
+.vscode/
+create/EVAD Panel/locales/
+create/EVAD Panel/resources/app/node_modules/
+create/node_modules/
+create/user_agents_1M.txt
+create/emails_comprados.txt
+create/emails_descartados_*.txt
+create/nolicense.txt
+create/proxys.txt
+license-server/licenses.json
