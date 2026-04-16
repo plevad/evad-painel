@@ -6,6 +6,17 @@ const crypto = require('crypto');
 const app = express();
 app.use(express.json());
 
+// CORS headers para permitir requisições do Electron
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
 // Caminho do banco de licenças
 const DB_PATH = path.join(__dirname, 'licenses.json');
 
