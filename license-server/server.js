@@ -159,8 +159,26 @@ app.post('/api/admin/deactivate', (req, res) => {
     res.json({ success: true, message: 'Licença desativada' });
 });
 
-// Health check
-app.get('/health', (req, res) => {
+// Endpoint para deletar licença permanentemente
+app.post('/api/admin/delete', (req, res) => {
+    const { adminPassword, key } = req.body;
+    const ADMIN_PASSWORD = 'Evad@2025#PL';
+
+    if (adminPassword !== ADMIN_PASSWORD) {
+        return res.json({ success: false, message: 'Senha admin incorreta' });
+    }
+
+    const licenses = loadLicenses();
+    if (!licenses[key]) {
+        return res.json({ success: false, message: 'Licença não encontrada' });
+    }
+
+    delete licenses[key];
+    saveLicenses(licenses);
+
+    console.log(`[ADMIN] Licença deletada: ${key}`);
+    res.json({ success: true, message: 'Licença deletada' });
+});
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
