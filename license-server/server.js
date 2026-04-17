@@ -179,6 +179,9 @@ app.post('/api/admin/delete', (req, res) => {
     console.log(`[ADMIN] Licença deletada: ${key}`);
     res.json({ success: true, message: 'Licença deletada' });
 });
+
+// Health check
+app.get('/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
